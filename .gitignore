@@ -7,3 +7,6 @@ __pycache__/
 # Data
 /data/*
 !/data/*.py
+
+# Checkpoints
+checkpoints
