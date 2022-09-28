@@ -1,15 +1,16 @@
 import re
 from abc import ABC, abstractmethod
+from typing import List
 
 import cv2
+import torch
 from paddleocr import PaddleOCR
+from PIL import Image
 from sklearn.preprocessing import LabelEncoder
 from torch import nn
 from torchvision import transforms
-import torch
 from torchvision.models import mobilenet_v3_small
-from typing import List
-from PIL import Image
+
 
 class CarNumberRecognizer(ABC):
     @abstractmethod

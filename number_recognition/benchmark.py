@@ -1,13 +1,16 @@
-from number_recognition import ClassicCarNumberRecognizer, MobileNetCarNumberRecognizer
-import unidecode
-import torch
-from pathlib import Path
-import cv2
-from PIL import Image
-import numpy as np
 import json
-from tqdm import tqdm
 import time
+from pathlib import Path
+
+import cv2
+import numpy as np
+import torch
+import unidecode
+from PIL import Image
+from tqdm import tqdm
+
+from number_recognition import ClassicCarNumberRecognizer, MobileNetCarNumberRecognizer
+
 
 def get_sync_time():
     if torch.cuda.is_available():
