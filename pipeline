@@ -1,0 +1,43 @@
+import cv2
+import matplotlib.pyplot as plt 
+import torch
+import math
+from number_recognition.number_recognition import MobileNetCarNumberRecognizer
+
+
+model = torch.hub.load('plate_detection/yolov5/', 'custom', path='plate_detection/best.pt', source='local')
+vs = cv2.VideoCapture("./test_videos/test.mp4")
+second = 0
+
+while True:
+    vs.set(cv2.CAP_PROP_POS_MSEC, second*500)
+    second += 1
+    ret, frame = vs.read()
+    # Место для модели детекции машин
+    # car_det_res = model(frame) # expect as output coords, type of car, color and brand
+    '''
+    Дальше такая идея: если правая сторона bbox > какого-то значения, то дальше кадры
+    передаются следующим моделям, если нет, то переходим к следующему кадру. Благодаря
+    этому не придется прогонять каждый кадр через все три модели, а также когда машина еще
+    далеко, распознавание номера бессмысленно и приведет к ошибкам. А возможно это, т.к. 
+    камера статична и при начальной установке можно задать эту координату x (координата,
+    когда машина подъезжает к шлагбауму)
+    '''
+    # if car_det_res['x_max'] > x_trigger:
+    results = model(frame) 
+    print('results:', results)
+    crops = results.crop(save=False)
+    if len(crops)>0: 
+        box = crops[0]['box']
+    else:
+        continue
+    frame_crop = frame[math.floor(box[1])-4:math.ceil(box[3])+4, math.floor(box[0])-4:math.ceil(box[2])+4]
+    cv2.imshow('image', frame_crop)
+    cv2.waitKey(0)
+    number_recognizer = MobileNetCarNumberRecognizer("./number_recognition/model.pt")
+    number = number_recognizer.recognize_number(frame_crop)
+    print(number)
+'''
+Дальше есть идея собирать распознанные номера одной машины и просто выдавать один, самый частый,
+но тут жду модель для детекции машин, чтобы смотреть на координаты бокса
+'''
