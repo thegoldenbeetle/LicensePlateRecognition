@@ -1,7 +1,0 @@
-opencv-python
-numpy
-paddleocr
-paddlepaddle
-torch
-scikit-learn
-Unidecode
