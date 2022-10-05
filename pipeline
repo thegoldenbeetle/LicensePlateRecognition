@@ -40,8 +40,8 @@ def main():
                         # print(number)
                         number_plates.append(number)
                         if car['box'][3]>830:
-                            # print('final car plate - ', Counter(number_plates).most_common(1)[0][0])
-                            # print('____________')
+                            print('final car plate - ', Counter(number_plates).most_common(1)[0][0])
+                            print('____________')
                             number_plates = []
                     else:
                         continue
@@ -55,5 +55,4 @@ if __name__ == "__main__":
     number_recognizer = MobileNetCarNumberRecognizer("./number_recognition/model.pt")
 
     vs = cv2.VideoCapture("./test_videos/test.mp4")
-
     main()
