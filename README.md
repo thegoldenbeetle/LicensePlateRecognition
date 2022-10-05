@@ -18,3 +18,4 @@ DL course
 ### Про распознавание номеров:
 Идея [модели](https://hackernoon.com/latest-deep-learning-ocr-with-keras-and-supervisely-in-15-minutes-34aecd630ed8) распознавания номеров.
 
+Документ с подробным описанием: https://docs.google.com/document/d/1ic4dMmIda8d0HcPVK3ijlawNiIg-R8MzXLyj9Z124i0/edit?usp=sharing
