@@ -11,6 +11,12 @@ __pycache__/
 # Checkpoints
 checkpoints
 
+# Weights
+number_recognition/model.pt
+plate_detection/best.pt
+yolov5m6.pt
+
 venv/*
 runs/*
-plate_detection/best.pt
+.idea/*
+yolov5/*

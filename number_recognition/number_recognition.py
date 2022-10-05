@@ -99,7 +99,7 @@ class MobileNetCarNumberRecognizer(nn.Module, CarNumberRecognizer):
 
         self.eval()
         if weights_path is not None:
-            self.load_state_dict(torch.load(weights_path))
+            self.load_state_dict(torch.load(weights_path, map_location=torch.device('cpu')))
 
     def forward(self, x):
         x = self.features(x)
